@@ -58,11 +58,19 @@ document.querySelector(`.again`).addEventListener(`click`, function () {
 });
 const body = document.querySelector(`.bl`);
 document.querySelector(`.yes`).addEventListener(`click`, function () {
+  const guess = Number(document.querySelector(`.guess`).value);
   body.classList.toggle('black');
   secretNumber = Math.trunc(Math.random() * 20 + 1);
   score = 20;
   document.querySelector(`.score`).textContent = score;
   document.querySelector(`.highscore`).textContent = `0`;
+  highscore = 0;
+  if (guess === secretNumber) {
+    if (score > highscore) {
+      highscore = score;
+      document.querySelector(`.highscore`).textContent = highscore;
+    }
+  }
   document.querySelector(`.guess`).value = '';
   document.querySelector(`.number`).style.width = `15rem`;
   document.querySelector(`.number`).textContent = `?`;
