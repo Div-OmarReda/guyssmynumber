@@ -45,11 +45,11 @@ document.querySelector('.check').addEventListener('click', function () {
     document.querySelector(`body`).style.backgroundColor = `#60b347`;
     document.querySelector(`.number`).style.width = `30rem`;
   } else if (guess > secretNumber) {
-    document.querySelector(`.message`).textContent = `📈 Too High  `;
+    document.querySelector(`.message`).textContent = '📈 Too High  ';
     score--;
     document.querySelector(`.score`).textContent = score;
   } else if (guess < secretNumber) {
-    document.querySelector(`.message`).textContent = `📉 Too low  `;
+    document.querySelector(`.message`).textContent = '📉 Too low  ';
     score--;
     document.querySelector(`.score`).textContent = score;
   }
