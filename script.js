@@ -9,6 +9,10 @@ const fail = function () {
   const fail1 = new Audio('fail.mp3');
   fail1.play();
 };
+const sure = function () {
+  const sure1 = new Audio('record.mp3');
+  sure1.play();
+};
 
 const fart = function () {
   const fart1 = new Audio('fart.mp3');
@@ -35,6 +39,7 @@ document.querySelector('.check').addEventListener('click', function () {
     document.querySelector(`.attempt`).textContent = `After the ${
       20 - score
     }th attempt`;
+
     if (score > highscore) {
       highscore = score;
       document.querySelector(`.highscore`).textContent = highscore;
@@ -44,15 +49,21 @@ document.querySelector('.check').addEventListener('click', function () {
     document.querySelector(`.number`).textContent = secretNumber;
     document.querySelector(`body`).style.backgroundColor = `#60b347`;
     document.querySelector(`.number`).style.width = `30rem`;
-  } else if (guess > secretNumber) {
-    document.querySelector(`.message`).textContent = '📈 Too High  ';
+  } else if (guess !== secretNumber) {
     score--;
     document.querySelector(`.score`).textContent = score;
-  } else if (guess < secretNumber) {
-    document.querySelector(`.message`).textContent = '📉 Too low  ';
-    score--;
-    document.querySelector(`.score`).textContent = score;
+    document.querySelector(`.message`).textContent =
+      guess > secretNumber ? '📈 Too High  ' : '📉 Too low  ';
   }
+  // } else if (guess > secretNumber) {
+  //   document.querySelector(`.message`).textContent = '📈 Too High  ';
+  //   score--;
+  //   document.querySelector(`.score`).textContent = score;
+  // } else if (guess < secretNumber) {
+  //   document.querySelector(`.message`).textContent = '📉 Too low  ';
+  //   score--;
+  //   document.querySelector(`.score`).textContent = score;
+  // }
 
   if (score === 0 || score < 0) {
     document.querySelector(`.message`).textContent = `💔 You lost at the Game`;
@@ -81,9 +92,11 @@ document.querySelector(`.yes`).addEventListener(`click`, function () {
   body.classList.toggle('black');
   secretNumber = Math.trunc(Math.random() * 20 + 1);
   score = 20;
+
   document.querySelector(`.score`).textContent = score;
   document.querySelector(`.highscore`).textContent = `0`;
   highscore = 0;
+
   if (guess === secretNumber) {
     if (score > highscore) {
       highscore = score;
@@ -97,13 +110,14 @@ document.querySelector(`.yes`).addEventListener(`click`, function () {
   document.querySelector(`body`).style.backgroundColor = `#222`;
   headerEl.classList.toggle('aru-display');
   document.querySelector(`.message`).textContent = `Guess My Number!`;
+  fart().play();
 });
 const headerEl = document.querySelector(`.aru-boxs`);
 document.querySelector(`.reset`).addEventListener(`click`, function () {
   headerEl.classList.toggle('aru-display');
 
   body.classList.toggle('black');
-  fart().play();
+  sure().play();
 });
 
 document.querySelector(`.no`).addEventListener(`click`, function () {
