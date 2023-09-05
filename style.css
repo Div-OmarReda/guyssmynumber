@@ -75,11 +75,6 @@ main {
   transform: translate(0%, 0%);
 }
 
-.black {
-  visibility: hidden;
-  transform: scale(0.2);
-  transition: 0.5s all;
-}
 .aru {
   display: grid;
   justify-content: center;
@@ -180,4 +175,15 @@ h1 {
   color: #fff;
   transition: 0.4s all;
   opacity: 0;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.747);
+  backdrop-filter: blur(4px);
+  z-index: 5;
 }
