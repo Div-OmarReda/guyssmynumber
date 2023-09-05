@@ -1,22 +1,17 @@
 'use strict';
 
-const invaild = function () {
-  const invaild1 = new Audio('invaild.mp3');
-  invaild1.play();
+const invaild = new Audio('invaild.mp3');
+const fail = new Audio('fail.mp3');
+const sure = new Audio('record.mp3');
+const fart = new Audio('fart.mp3');
+const sound20 = new Audio('win.mp3');
+
+const soundTrack = function (sound) {
+  sound.play();
 };
 
-const fail = function () {
-  const fail1 = new Audio('fail.mp3');
-  fail1.play();
-};
-const sure = function () {
-  const sure1 = new Audio('record.mp3');
-  sure1.play();
-};
-
-const fart = function () {
-  const fart1 = new Audio('fart.mp3');
-  fart1.play();
+const displayMessage = function (message) {
+  document.querySelector(`.message`).textContent = message;
 };
 const getHour = new Date().getDate();
 document.querySelector(
@@ -31,11 +26,10 @@ document.querySelector('.check').addEventListener('click', function () {
   const guess = Number(document.querySelector(`.guess`).value);
 
   if (!guess) {
-    document.querySelector('.message').textContent = `❌ invaild Number`;
-    invaild().play();
+    displayMessage(`❌ invaild Number`);
+    soundTrack(invaild).play();
   } else if (guess === secretNumber) {
-    document.querySelector(`.message`).textContent = `🏆 Corrent Answer`;
-    playSound();
+    displayMessage(`🏆 Corrent Answer`);
     document.querySelector(`.attempt`).textContent = `After the ${
       20 - score
     }th attempt`;
@@ -49,6 +43,7 @@ document.querySelector('.check').addEventListener('click', function () {
     document.querySelector(`.number`).textContent = secretNumber;
     document.querySelector(`body`).style.backgroundColor = `#60b347`;
     document.querySelector(`.number`).style.width = `30rem`;
+    soundTrack(sound20).play();
   } else if (guess !== secretNumber) {
     score--;
     document.querySelector(`.score`).textContent = score;
@@ -66,11 +61,11 @@ document.querySelector('.check').addEventListener('click', function () {
   // }
 
   if (score === 0 || score < 0) {
-    document.querySelector(`.message`).textContent = `💔 You lost at the Game`;
+    displayMessage(`💔 You lost at the Game`);
 
     document.querySelector(`body`).style.backgroundColor = `#631a15`;
     document.querySelector(`.score`).textContent = 0;
-    fail().play();
+    soundTrack(fail).play();
   }
 });
 
@@ -83,13 +78,14 @@ document.querySelector(`.again`).addEventListener(`click`, function () {
   document.querySelector(`.number`).textContent = `?`;
   document.querySelector(`.attempt`).style.opacity = `0`;
   document.querySelector(`body`).style.backgroundColor = `#222`;
-  document.querySelector(`.message`).textContent = `Guess My Number!`;
-  fart().play();
+  displayMessage(`Guess My Number!`);
+  soundTrack(fart).play();
 });
 const body = document.querySelector(`.bl`);
 document.querySelector(`.yes`).addEventListener(`click`, function () {
+  document.querySelector(`.hidden`).classList.remove(`overlay`);
   const guess = Number(document.querySelector(`.guess`).value);
-  body.classList.toggle('black');
+
   secretNumber = Math.trunc(Math.random() * 20 + 1);
   score = 20;
 
@@ -109,25 +105,28 @@ document.querySelector(`.yes`).addEventListener(`click`, function () {
   document.querySelector(`.attempt`).style.opacity = `0`;
   document.querySelector(`body`).style.backgroundColor = `#222`;
   headerEl.classList.toggle('aru-display');
-  document.querySelector(`.message`).textContent = `Guess My Number!`;
-  fart().play();
+  displayMessage(`Guess My Number!`);
+
+  soundTrack(fart).play();
 });
 const headerEl = document.querySelector(`.aru-boxs`);
 document.querySelector(`.reset`).addEventListener(`click`, function () {
   headerEl.classList.toggle('aru-display');
+  document.querySelector(`.hidden`).classList.add(`overlay`);
 
-  body.classList.toggle('black');
-  sure().play();
+  soundTrack(sure).play();
 });
 
 document.querySelector(`.no`).addEventListener(`click`, function () {
   headerEl.classList.toggle('aru-display');
 
-  body.classList.toggle('black');
-  fart().play();
+  document.querySelector(`.hidden`).classList.remove(`overlay`);
+  soundTrack(fart).play();
 });
 
-const playSound = function () {
-  const sound20 = new Audio('win.mp3');
-  sound20.play();
-};
+const overlay = document.querySelector(`.hidden`);
+
+overlay.addEventListener(`click`, function () {
+  headerEl.classList.toggle('aru-display');
+  document.querySelector(`.hidden`).classList.remove(`overlay`);
+});
