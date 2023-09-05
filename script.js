@@ -9,6 +9,7 @@ const no = new Audio('no.mp3');
 const yes = new Audio('yes.mp3');
 const again = new Audio('again.mp3');
 
+const numbers = [20, 50, 80, 100];
 const soundTrack = function (sound) {
   sound.play();
 };
@@ -149,7 +150,7 @@ easy.addEventListener(`click`, function () {
   secretNumber = Math.trunc(Math.random() * 20 + 1);
   document.querySelector(
     `.between`
-  ).textContent = `(Pick a number Between 1 and 20)`;
+  ).textContent = `(Pick a number Between 1 and ${numbers[0]})`;
   hidDif();
   soundTrack(fart).play();
 });
@@ -157,7 +158,7 @@ medium.addEventListener(`click`, function () {
   secretNumber = Math.trunc(Math.random() * 50 + 1);
   document.querySelector(
     `.between`
-  ).textContent = `(Pick a number Between 1 and 50)`;
+  ).textContent = `(Pick a number Between 1 and ${numbers[1]})`;
   hidDif();
   soundTrack(fart).play();
 });
@@ -165,7 +166,7 @@ hard.addEventListener(`click`, function () {
   secretNumber = Math.trunc(Math.random() * 80 + 1);
   document.querySelector(
     `.between`
-  ).textContent = `(Pick a number Between 1 and 80)`;
+  ).textContent = `(Pick a number Between 1 and ${numbers[2]})`;
   hidDif();
   soundTrack(fart).play();
 });
@@ -173,34 +174,22 @@ veryhard.addEventListener(`click`, function () {
   secretNumber = Math.trunc(Math.random() * 50 + 1);
   document.querySelector(
     `.between`
-  ).textContent = `(Pick a number Between 1 and 100)`;
+  ).textContent = `(Pick a number Between 1 and ${numbers[3]})`;
   hidDif();
   soundTrack(fart).play();
 });
 
-const number20 = (document.querySelector(
-  `.between`
-).textContent = `(Pick a number Between 1 and 20)`);
-const number50 = (document.querySelector(
-  `.between`
-).textContent = `(Pick a number Between 1 and 50)`);
-const number80 = (document.querySelector(
-  `.between`
-).textContent = `(Pick a number Between 1 and 80)`);
-const number100 = (document.querySelector(
-  `.between`
-).textContent = `(Pick a number Between 1 and 100)`);
 document.querySelector(`.again`).addEventListener(`click`, function () {
-  if (number20) {
+  if (numbers[0]) {
     secretNumber = Math.trunc(Math.random() * 20 + 1);
   }
-  if (number50) {
+  if (numbers[1]) {
     secretNumber = Math.trunc(Math.random() * 50 + 1);
   }
-  if (number80) {
+  if (numbers[2]) {
     secretNumber = Math.trunc(Math.random() * 80 + 1);
   }
-  if (number100) {
+  if (numbers[3]) {
     secretNumber = Math.trunc(Math.random() * 100 + 1);
   }
   score = 20;
@@ -211,6 +200,7 @@ document.querySelector(`.again`).addEventListener(`click`, function () {
   document.querySelector(`.attempt`).style.opacity = `0`;
   document.querySelector(`body`).style.backgroundColor = `#222`;
   displayMessage(`Guess My Number!`);
+
   soundTrack(again).play();
 });
 
