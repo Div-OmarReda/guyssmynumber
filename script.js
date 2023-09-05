@@ -5,6 +5,9 @@ const fail = new Audio('fail.mp3');
 const sure = new Audio('record.mp3');
 const fart = new Audio('fart.mp3');
 const sound20 = new Audio('win.mp3');
+const no = new Audio('no.mp3');
+const yes = new Audio('yes.mp3');
+const again = new Audio('again.mp3');
 
 const soundTrack = function (sound) {
   sound.play();
@@ -95,7 +98,7 @@ document.querySelector(`.yes`).addEventListener(`click`, function () {
   headerEl.classList.toggle('aru-display');
   displayMessage(`Guess My Number!`);
 
-  soundTrack(fart).play();
+  soundTrack(yes).play();
 });
 const headerEl = document.querySelector(`.aru-boxs`);
 document.querySelector(`.reset`).addEventListener(`click`, function () {
@@ -109,7 +112,7 @@ document.querySelector(`.no`).addEventListener(`click`, function () {
   headerEl.classList.toggle('aru-display');
 
   document.querySelector(`.hidden`).classList.remove(`overlay`);
-  soundTrack(fart).play();
+  soundTrack(no).play();
 });
 
 const aru = document.querySelector(`.aru-boxs`);
@@ -208,7 +211,7 @@ document.querySelector(`.again`).addEventListener(`click`, function () {
   document.querySelector(`.attempt`).style.opacity = `0`;
   document.querySelector(`body`).style.backgroundColor = `#222`;
   displayMessage(`Guess My Number!`);
-  soundTrack(fart).play();
+  soundTrack(again).play();
 });
 
 document.querySelector(`.btn-know-more`).addEventListener(`click`, function () {
