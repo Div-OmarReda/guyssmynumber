@@ -124,9 +124,18 @@ document.querySelector(`.no`).addEventListener(`click`, function () {
   soundTrack(fart).play();
 });
 
+const aru = document.querySelector(`.aru-boxs`);
 const overlay = document.querySelector(`.hidden`);
 
 overlay.addEventListener(`click`, function () {
   headerEl.classList.toggle('aru-display');
   document.querySelector(`.hidden`).classList.remove(`overlay`);
+});
+
+document.addEventListener(`keydown`, function (e) {
+  if (e.key === `Escape`) {
+    if (!aru.classList.contains(`.aru-display`))
+      headerEl.classList.add('aru-display');
+    document.querySelector(`.hidden`).classList.remove(`overlay`);
+  }
 });
