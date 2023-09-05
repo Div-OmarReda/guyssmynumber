@@ -14,9 +14,9 @@ const displayMessage = function (message) {
   document.querySelector(`.message`).textContent = message;
 };
 const getHour = new Date().getDate();
-document.querySelector(
-  `.pick`
-).textContent = `Last update ${new Date().getMonth()}/${getHour}/${new Date().getFullYear()}`;
+// document.querySelector(
+//   `.pick`
+// ).textContent = `Last update ${new Date().getMonth()}/${getHour}/${new Date().getFullYear()}`;
 
 let secretNumber = Math.trunc(Math.random() * 20 + 1);
 
@@ -69,18 +69,6 @@ document.querySelector('.check').addEventListener('click', function () {
   }
 });
 
-document.querySelector(`.again`).addEventListener(`click`, function () {
-  secretNumber = Math.trunc(Math.random() * 20 + 1);
-  score = 20;
-  document.querySelector(`.score`).textContent = score;
-  document.querySelector(`.guess`).value = ` `;
-  document.querySelector(`.number`).style.width = `15rem`;
-  document.querySelector(`.number`).textContent = `?`;
-  document.querySelector(`.attempt`).style.opacity = `0`;
-  document.querySelector(`body`).style.backgroundColor = `#222`;
-  displayMessage(`Guess My Number!`);
-  soundTrack(fart).play();
-});
 const body = document.querySelector(`.bl`);
 document.querySelector(`.yes`).addEventListener(`click`, function () {
   document.querySelector(`.hidden`).classList.remove(`overlay`);
@@ -138,4 +126,94 @@ document.addEventListener(`keydown`, function (e) {
       headerEl.classList.add('aru-display');
     document.querySelector(`.hidden`).classList.remove(`overlay`);
   }
+});
+
+const dif = document.querySelector(`.dif`);
+const easy = document.querySelector(`.btn-easy`);
+const medium = document.querySelector(`.btn-medium`);
+const hard = document.querySelector(`.btn-hard`);
+const veryhard = document.querySelector(`.btn-veryhard`);
+const hidDif = function () {
+  dif.classList.add(`btn-hid`);
+};
+
+document.querySelector(`.btn-dif`).addEventListener(`click`, function () {
+  dif.classList.remove(`btn-hid`);
+  soundTrack(fart).play();
+});
+
+easy.addEventListener(`click`, function () {
+  secretNumber = Math.trunc(Math.random() * 20 + 1);
+  document.querySelector(
+    `.between`
+  ).textContent = `(Pick a number Between 1 and 20)`;
+  hidDif();
+  soundTrack(fart).play();
+});
+medium.addEventListener(`click`, function () {
+  secretNumber = Math.trunc(Math.random() * 50 + 1);
+  document.querySelector(
+    `.between`
+  ).textContent = `(Pick a number Between 1 and 50)`;
+  hidDif();
+  soundTrack(fart).play();
+});
+hard.addEventListener(`click`, function () {
+  secretNumber = Math.trunc(Math.random() * 80 + 1);
+  document.querySelector(
+    `.between`
+  ).textContent = `(Pick a number Between 1 and 80)`;
+  hidDif();
+  soundTrack(fart).play();
+});
+veryhard.addEventListener(`click`, function () {
+  secretNumber = Math.trunc(Math.random() * 50 + 1);
+  document.querySelector(
+    `.between`
+  ).textContent = `(Pick a number Between 1 and 100)`;
+  hidDif();
+  soundTrack(fart).play();
+});
+
+const number20 = (document.querySelector(
+  `.between`
+).textContent = `(Pick a number Between 1 and 20)`);
+const number50 = (document.querySelector(
+  `.between`
+).textContent = `(Pick a number Between 1 and 50)`);
+const number80 = (document.querySelector(
+  `.between`
+).textContent = `(Pick a number Between 1 and 80)`);
+const number100 = (document.querySelector(
+  `.between`
+).textContent = `(Pick a number Between 1 and 100)`);
+document.querySelector(`.again`).addEventListener(`click`, function () {
+  if (number20) {
+    secretNumber = Math.trunc(Math.random() * 20 + 1);
+  }
+  if (number50) {
+    secretNumber = Math.trunc(Math.random() * 50 + 1);
+  }
+  if (number80) {
+    secretNumber = Math.trunc(Math.random() * 80 + 1);
+  }
+  if (number100) {
+    secretNumber = Math.trunc(Math.random() * 100 + 1);
+  }
+  score = 20;
+  document.querySelector(`.score`).textContent = score;
+  document.querySelector(`.guess`).value = ` `;
+  document.querySelector(`.number`).style.width = `15rem`;
+  document.querySelector(`.number`).textContent = `?`;
+  document.querySelector(`.attempt`).style.opacity = `0`;
+  document.querySelector(`body`).style.backgroundColor = `#222`;
+  displayMessage(`Guess My Number!`);
+  soundTrack(fart).play();
+});
+
+document.querySelector(`.btn-know-more`).addEventListener(`click`, function () {
+  document.querySelector(`.knowmore-text-box`).classList.toggle(`ktb-hid`);
+});
+document.querySelector(`.btn-exit`).addEventListener(`click`, function () {
+  document.querySelector(`.knowmore-text-box`).classList.toggle(`ktb-hid`);
 });
